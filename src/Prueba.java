@@ -1,7 +1,6 @@
-
 /**
  *
- * @author Josue Veliz
+ * @author Josue Veliz Escobar
  */
 public class Prueba {
     
