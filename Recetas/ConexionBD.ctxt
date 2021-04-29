@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=ConexionBD
+comment1.params=
+comment1.target=ConexionBD()
+comment2.params=n\ i\ p
+comment2.target=void\ aniadirPostre(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment3.params=nombreP
+comment3.target=void\ borrarPostre(java.lang.String)
+comment4.params=nombreP
+comment4.target=boolean\ existeReceta(java.lang.String)
+numComments=5
