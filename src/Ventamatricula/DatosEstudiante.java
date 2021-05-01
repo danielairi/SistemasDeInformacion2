@@ -1,13 +1,13 @@
-package Ventamatricula.DatosEstudiante;
+package Ventamatricula;
 
-import Conexion.Conexion;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import Conexion.ConexionBD; 
+import java.util.ArrayList;
 
 public class DatosEstudiante extends javax.swing.JFrame {
 
@@ -32,6 +32,7 @@ public class DatosEstudiante extends javax.swing.JFrame {
         jTextFieldColegio = new javax.swing.JTextField();
         jTextFieldEstado = new javax.swing.JTextField();
         jTextFieldSexo = new javax.swing.JTextField();
+        jTextFieldCarrera = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -41,6 +42,7 @@ public class DatosEstudiante extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +71,9 @@ public class DatosEstudiante extends javax.swing.JFrame {
 
         jTextFieldSexo.setEditable(false);
         jTextFieldSexo.setBackground(new java.awt.Color(182, 208, 225));
+
+        jTextFieldCarrera.setEditable(false);
+        jTextFieldCarrera.setBackground(new java.awt.Color(182, 208, 225));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel1.setText("COD SIS:");
@@ -101,6 +106,9 @@ public class DatosEstudiante extends javax.swing.JFrame {
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("DATOS");
 
+        jLabel9.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel9.setText("CARRERA:");
+
         javax.swing.GroupLayout jPanelDatosEstudianteLayout = new javax.swing.GroupLayout(jPanelDatosEstudiante);
         jPanelDatosEstudiante.setLayout(jPanelDatosEstudianteLayout);
         jPanelDatosEstudianteLayout.setHorizontalGroup(
@@ -117,7 +125,8 @@ public class DatosEstudiante extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,7 +137,8 @@ public class DatosEstudiante extends javax.swing.JFrame {
                                 .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextFieldCodSis, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextFieldNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldCi, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jTextFieldCi, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
         );
@@ -140,38 +150,41 @@ public class DatosEstudiante extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelDatosEstudianteLayout.createSequentialGroup()
-                        .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelDatosEstudianteLayout.createSequentialGroup()
-                                .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextFieldCodSis, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextFieldCi, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextFieldNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addGap(38, 38, 38)
-                                .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextFieldSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addGap(34, 34, 34)
-                                .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6))
+                        .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldCodSis, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldCi, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldNombreE, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldColegio, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -231,8 +244,10 @@ public class DatosEstudiante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelDatosEstudiante;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldCarrera;
     private javax.swing.JTextField jTextFieldCi;
     private javax.swing.JTextField jTextFieldCodSis;
     private javax.swing.JTextField jTextFieldColegio;
@@ -245,19 +260,42 @@ public class DatosEstudiante extends javax.swing.JFrame {
 
     private void llenarDatos(String codSis) {
         try {
-            Conexion cs = new Conexion();
+            ConexionBD cs = new ConexionBD();
             Connection cBD = cs.conexion();
             Statement instruccion = cBD.createStatement();
-        ResultSet rs = instruccion.executeQuery("select Postre.id from Postre Where postre.id = "+nombre.hashCode());
-            
-            jTextFieldCodSis.setText(codSis);
-            jTextFieldCi.setText(codSis);
-            jTextFieldNombreE.setText(codSis);
-            jTextFieldSexo.setText(codSis);
-            jTextFieldCorreo.setText(codSis);
-            jTextFieldFechaNac.setText(codSis);
-            jTextFieldColegio.setText(codSis);
-            jTextFieldEstado.setText(codSis);
+            ResultSet rs = instruccion.executeQuery("select Estudiante.codSis, ci,nombreEst,sexo,correo,fechaNac,colegio,estado,nombreCarrera\n" +
+                                                    "From Estudiante,Carrera,Estudiante_Carrera\n" +
+                                                    "where Estudiante.codSis=Estudiante_Carrera.codSis and Carrera.idCarrera=Estudiante_Carrera.idCarrera and Estudiante.codSis="+codSis);
+            ArrayList v = new ArrayList();
+            try{
+                while(rs.next()){
+                    v.add(rs.getInt(1));
+                    v.add(rs.getInt(2));
+                    v.add(rs.getString(3));
+                    String sexo = rs.getString(4);
+                    if(sexo.equalsIgnoreCase("M")){
+                        v.add("Masculino");
+                    }else{
+                        v.add("Femenino");
+                    }
+                    v.add(rs.getString(5));
+                    v.add(rs.getDate(6));
+                    v.add(rs.getString(7));
+                    v.add(rs.getString(8));
+                    v.add(rs.getString(9));
+                }
+            }catch(SQLException e){
+                
+            }
+            jTextFieldCodSis.setText(v.get(0)+"");
+            jTextFieldCi.setText(v.get(1)+"");
+            jTextFieldNombreE.setText(v.get(2).toString());
+            jTextFieldSexo.setText(v.get(3).toString());
+            jTextFieldCorreo.setText(v.get(4).toString());
+            jTextFieldFechaNac.setText(v.get(5).toString());
+            jTextFieldColegio.setText(v.get(6).toString());
+            jTextFieldEstado.setText(v.get(7).toString());
+            jTextFieldCarrera.setText(v.get(8).toString());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DatosEstudiante.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
