@@ -20,8 +20,8 @@ import javax.swing.table.DefaultTableModel;
  * @author alvaro
  */
 public class Ingresar extends javax.swing.JFrame {
-    Conexion cs = new Conexion();
-            Connection cBD = cs.conexion();
+    ConexionBD cs = new ConexionBD();
+    Connection cBD = cs.conexion();
     static String dato_usuario;
     /**
      * Creates new form hola2
